@@ -3,17 +3,30 @@ const dieRoll = dieType => {
     return Math.ceil(dieType*Math.random());    
 }
 
-//Set objects containing phrases for eacn piece of encounter message (setting, obstacle, attitude)
+//Initialize the string that will contain the final encounter description
 
+const encounter = [];
+
+//Set objects containing phrases for each piece of encounter message (setting, obstacle)
+
+//Establish the setting for the encounter by randomly assigning the enviroment, temperature, wind, and percipitation
 const encntrSetting = () => {
     const landscape = [ "The trail ahead turns left behind a stand of trees.", "A wide sandy bank along a coursing river lies to the right of your path.", "A glade opens up in the tree canopy with dappled light and knee high grass just ahead of you.", "A rocky incline rises on both sides of your path as you walk into a ravine.", "A copse of trees covers the path providing dense cover up ahead.", "A small pristine lake sits undisturbed surrounded by dense brush and cattails."]
-    const temperature = ["Freezing","Cold","Chilly","Cool","Mild","Pleasent","Warm","Balmy","Sweltering","Boiling"];
-    const perciptitation = ["Drizzle", "Mist", "Deluge", "Dense Fog", "Clear Skies"];
-    const wind = ["Howling", "Blustery", "Light Breeze of", "Calm", "Intermittent Gusts"];
-    const setting = landscape[dieRoll(6)-1] + " The air is " + temperature[dieRoll(10)-1] + ", with a " + wind[dieRoll(5)-1] + " wind and a " + perciptitation[dieRoll(5)-1];
+    const temperature = ["freezing","cold","chilly","cool","mild","pleasent","warm","balmy","sweltering","boiling"];
+    const perciptitation = ["slight drizzle", "fine mist", "deluge of rain", "thick dense fog", "clear cloudless sky"];
+    const wind = ["howling", "blustery", "light breeze of", "lack of", "intermittent gust of"];
+    const setting = landscape[dieRoll(6)-1] + " The air is " + temperature[dieRoll(10)-1] + ", with a " + wind[dieRoll(5)-1] + " wind and a " + perciptitation[dieRoll(5)-1] + ".";
 
     return setting 
 } 
+
+//Randomly choose a type of obstacle them randomly assign one of the chosen type to a string 
+const encntrObstacle = () => {
+    const trap = ["There is a campsite in the distance that appears abandoned.", "An overturned cart is just off the path with scattered belongings all around.", "A thick blanket of leaves covers the path ahead"];
+    const creature = ["Low growling comes from the brush just off the path, a pack of wolves appear.","Suddenly shadowy figure jump out from the brush brandishing knives, axes, and clubs, Bandits!", "A small gnomish man sits on a rock under a tree with a walking stick laying across his knees."];
+    const location = ["You see the mouth of a cave hidden behind a pile of boulders. An aracne hum eminates from within.","Temple ruins peek out in scattered points all around, overgrown with vegetation and covered in years of dirt.","Ethereal singing floats out from a intertwined stand of trees as a faint blue glow pulses from just inside."];
+    const item = ["A group of felled trees lies around a clearing a rune covered axe is buried in one of the logs", "Churned up earth pitted and full of water and mud in small patch just to the side of the path. A string of irridescent black pearls strewn in a shallow pool of water", "At the edge of the path a carved stone bench sits carved into its back is the phrase: Take time for a short rest."];
+}
 //Call for each part of the encounter and combine to create message
 
 console.log(encntrSetting());
